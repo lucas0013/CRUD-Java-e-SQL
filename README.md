@@ -13,5 +13,7 @@ Possible next steps:
 [ ] - Interface  
 [ ] - More tables  
 [ ] - Create new business rules  
+[ ] - Update by pre-selected table.attribute in interface  
+[ ] - Delete by pre-selected table.attribute in interface  
 
 
