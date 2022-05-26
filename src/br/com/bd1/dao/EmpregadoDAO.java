@@ -57,6 +57,76 @@ public class EmpregadoDAO {
 		}
 	}
 	
+	public void update(Empregado empregado) {
+		String sql = "UPDATE empregado SET nome = ?, idade = ?, sexo = ?" + "WHERE cod = ?";
+		Connection conn = null;
+		PreparedStatement pstm = null;
+	
+	
+		try {
+			//Conexão com banco
+			conn = ConnectionFactory.createConnectionToMySQL();
+			//Classe paraexecutar query
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			//Adicionar valores para atualização
+			pstm.setString(1, empregado.getNome());
+			pstm.setInt(2, empregado.getIdade());
+			pstm.setString(3, empregado.getSexo());
+			
+			//Qual o ID do registro para atualizar?
+			pstm.setInt(4, empregado.getIdade());
+			
+			//executar query
+			pstm.execute();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void deleteByID(int id) {
+		String sql = "DELETE FROM empregado WHERE cod = ?";
+		
+		Connection conn = null;
+		
+		PreparedStatement pstm = null;
+		try {
+			//Conexão com banco
+			conn = ConnectionFactory.createConnectionToMySQL();
+			//Classe para executar query
+			pstm = (PreparedStatement) conn.prepareStatement(sql);
+			
+			pstm.setInt(1, id);
+			
+			pstm.execute();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm!=null) {
+					pstm.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public List<Empregado> getEmpregado(){
 		String sql = "SELECT * FROM empregado";
 		

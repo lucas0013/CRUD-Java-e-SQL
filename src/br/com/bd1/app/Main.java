@@ -12,7 +12,16 @@ public class Main {
 		empregado.setIdade(21);
 		empregado.setSexo("M");
 		
-		empregadoDao.save(empregado);
+		Empregado e1 = new Empregado();
+		
+		e1.setNome("Lucas de Sousa");
+		e1.setIdade(24);
+		e1.setSexo("F");
+		e1.setIdade(1);
+		
+		//empregadoDao.update(e1); 
+		empregadoDao.deleteByID(10);
+		//empregadoDao.save(empregado);
 		for(Empregado e : empregadoDao.getEmpregado()) {
 			System.out.println("Empregado: "+ e.getNome());
 		}
